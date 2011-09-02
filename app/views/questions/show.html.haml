@@ -1,0 +1,139 @@
+%meta{"data-js"=> 'show'}
+= include_latex
+
+- question_body = find_and_preserve(shapado_auto_link(markdown(@question.body.present? ? @question.body : @question.title)))
+
+- content_for :head do
+  %meta{:name => "keywords", :content => clean_seo_keywords(@question.tags.dup, @question.title)}
+  %meta{:name => "description", :content => question_body.gsub(/<\/?[^>]*>/, "")[0, 255] }
+  %link{:rel => "canonical", :href => question_url(@question) }
+
+-cache_for(:question, @question.id, @question.user == current_user ? "owner" : "" ) do
+  %section#question{:class => "main-question #{@question.id}", :item_scope => '', :itemtype => "http://schema.org/Article"}
+    .author
+      %p
+        -#18n
+        %span
+          By:
+        = render :partial => "users/user_mini", :locals => {:user => @question.user, :author => true}
+        %span
+          = t('activerecord.attributes.question.created_at')
+        %time{:datetime => @question.created_at.iso8601, :itemprop => "datePublished"}
+          = t("time.ago", :time => time_ago_in_words(@question.created_at))
+        -if !@question.user.hide_country && @question.address.present?
+          %span
+            = t("global.from", :site => CGI.escape_html(@question.address_name))
+
+    %h1{:itemprop => "name"}
+      = @question.title
+      - if @question.closed
+        =" [#{t("closed", :scope => "activerecord.attributes.question").upcase}]"
+
+    .description.markdown
+
+
+      %div{:itemprop => "articleBody"}
+        = question_body
+      = render "reward_info"
+      = render "attachments", :question => @question, :attachments => @question.attachments, :editing => false
+      .clear
+
+    .stats
+      %p
+        = link_to t("questions.answer.add_comment"), "#", :class => "reply Question-commentable", 'data-commentable' => @question.id
+        %span
+          = t('questions.show.viewed')
+        = t('number.x_time', :count => number_with_delimiter(@question.views_count))
+        %span
+          = t("questions.show.last_activity")
+        = t("time.ago", :time => time_ago_in_words(@question.activity_at))
+
+    %meta{:itemprop=>"keywords", :content=>@question.tags.join(",")}
+    %meta{:itemprop=>"inLanguage", :content=>@question.language}
+    %meta{:itemprop=>"interactionCount", :content=>"UserComments:#{@question.answers_count}"}
+    %meta{:itemprop=>"interactionCount", :content=>"UserPageVisits:#{@question.views_count}"}
+
+    .comments
+      -@question.comments.each do |comment|
+        = render :partial => "comments/comment", :object => comment, :locals => {:source => @quetion, :mini => true}
+
+    .panel-comments
+      = form_for [@question, @comment ||= Comment.new], :html => {:class => "question_comment_form nestedAnswerForm", "data-commentable" => @question.id} do |f|
+        %fieldset
+          = render :partial => "comments/form", :locals => {:f => f, :commentable => @question, :source => question_url(@question)}
+          .buttons
+            = submit_tag t("comments.shared.comment_submit")
+            = t("global.or")
+            = link_to t('scaffold.cancel'), '', :class => 'cancel cancel_comment'
+
+
+
+    = render "toolbar"
+
+  %ul.tag-list
+    %li.title
+      = t('global.tags_label')
+    - @question.tags.each do |tag|
+      %li
+        = link_to h(tag), tag_path(:id => tag), :rel => "tag", :class => 'tag'
+    - if logged_in? && (current_user.can_modify?(@question) || current_user.can_retag_others_questions_on?(current_group))
+      %li.retag
+        = link_to t('.retag'), retag_question_path(@question), :id => 'retag'
+
+#answers-content-wrap
+  -cache_for(:question_answers, @question.id) do
+    %header
+      %h3
+        = t("questions.question.has_answers", :count => @answers.total_count)
+
+    %section.filters
+      %ul{:class => @active_subtab.to_s}
+        %header= t('global.sort_by')
+        %li.newest-active
+          = link_to t("questions.index.newest"), question_path(@question, :sort=>"newest", :anchor => "answers"), :rel => "nofollow", :class => "pjax", :"data-layout" => "question"
+        %li.votes-active
+          = link_to t("questions.index.votes"), question_path(@question, :sort=>"votes", :anchor => "answers"), :rel => "nofollow", :class => "pjax", :"data-layout" => "question"
+        %li.oldest-active
+          = link_to t("questions.index.oldest"), question_path(@question, :sort=>"oldest", :anchor => "answers"), :rel => "nofollow", :class => "pjax", :"data-layout" => "question"
+        %li
+          = link_to t('.solution')
+
+    .error
+      - source = question_path(@question)
+      = error_messages_for 'answer'
+
+    - if @question.closed && @question.close_reason.present?
+      #close_reason.pacho
+        = t(".close_reason")
+        = t(@question.close_reason.reason, :scope=>"close_requests.form")
+        - if !@question.close_reason.comment.empty?
+
+          .comment
+            =find_and_preserve(shapado_auto_link(@question.close_reason.comment))
+
+    .followUp-content
+      -if @question.follow_up
+        %h1
+          = t("questions.show.follow_up_of")
+        = link_to @question.follow_up.original_question.title, question_path(@question.follow_up.original_question)+"##{@question.follow_up.original_answer_id}", "rel" => 'nofollow'
+
+      -if @question.followed_up_by.limit(1).count > 0
+        %h1= t('global.followed_by')
+        %ul
+          -@question.followed_up_by.all.each do |child|
+            %li
+              = link_to child.title, question_path(child)
+
+  .answers-list
+    - if @answers.empty? && !@question.accepted
+      = render "shared/empty", :type => "answers", :url => ""
+    - else
+      - if @question.accepted
+        - solution = @question.answer
+        = render :partial=> "answer", :locals=> {:question => @question, :answer => solution} unless solution.nil?
+
+      - @answers.each do |answer|
+        - next if answer.id == @question.answer_id
+        = render "answer", {:question => @question, :answer => answer}
+
+  = paginate(@answers)

@@ -1,0 +1,76 @@
+.field
+  = form.label t('shared.name')
+  = form.text_field :name
+
+.field
+  = form.label t('shared.description')
+  = form.text_area :description
+
+.field
+  .checkbox
+    = form.label  I18n.t('themes.show.fluid')
+    = form.check_box :fluid
+
+%fieldset
+  .field
+    = form.label I18n.t('themes.show.bg_color')
+    = form.text_field :bg_color, :type => "color"
+
+  .field
+    = form.label I18n.t('themes.show.fg_color')
+    = form.text_field :fg_color, :type => "color"
+
+  .field
+    -if !@theme.new? && @theme.has_bg_image?
+      = image_tag("/_files/themes/bg_image/#{@theme.group_id}/#{@theme.id}")
+      =link_to t("scaffold.destroy"), remove_bg_image_theme_path(@theme)
+    = form.label I18n.t('themes.show.bg_image')
+    = form.file_field :bg_image
+
+  .field
+    = form.label I18n.t('themes.show.view_bg')
+    = form.text_field :view_bg_color, :type => "color"
+
+  .field
+    = form.label I18n.t('themes.show.view_fg')
+    = form.text_field :view_fg_color, :type => "color"
+
+%fieldset
+  .field
+    = form.label I18n.t('themes.show.button_bg')
+    = form.text_field :button_bg_color, :type => "color"
+
+  .field
+    = form.label I18n.t('themes.show.button_fg')
+    = form.text_field :button_fg_color, :type => "color"
+
+
+%fieldset
+  .field
+    = form.label  I18n.t('themes.show.link_bg')
+    = form.text_field :link_bg_color, :type => "color"
+
+  .field{:style => "margin-bottom: 3px"}
+    .checkbox
+      = form.label  I18n.t('themes.show.use_link_bg')
+      = form.check_box :use_link_bg_color
+
+  .field
+    = form.label I18n.t('themes.show.link_fg')
+    = form.text_field :link_fg_color, :type => "color"
+
+.field
+  = form.label :custom_css
+  = form.text_area :custom_css
+
+- if current_group.has_custom_js
+  .field
+    = form.label :javascript
+    - if @theme.has_js
+      = form.text_area :javascript, :value => @theme.javascript.get.read
+    - else
+      = form.text_area :javascript, :value => ''
+.form-options
+  .buttons
+    = form.submit :value => I18n.t('themes.form.update') , :class => "save"
+

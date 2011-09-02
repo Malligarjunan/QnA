@@ -1,0 +1,31 @@
+-content_for :subtabs do
+  .navtitle
+    =t(".title")
+
+-content_for :sidebar do
+  .block.notice{:style => "padding-bottom: 10px"}
+    %h4
+      =multiauth_menu(t(".enable_twitter"))
+  .block
+    .inner{:style => "padding-top: 10px"}
+      %ul.navigation
+        %li{:style => "text-align: center"}
+          = avatar_img(@user, :size => "big")
+          =link_to t("users.form.avatar_tip"), "http://gravatar.com", :target => "_blank"
+  .block
+    .inner
+      -if @user.member_of? current_group
+        =link_to "leave #{current_group.domain}", leave_users_path
+
+- @user.password = @user.password_confirmation = nil
+
+= error_messages_for :user
+
+= form_for @user, :html => {:class => "form", :multipart => true} do |f|
+  %h1
+    = t("users.form.information")
+  =render :partial => "form", :locals => {:f => f}
+
+  .form-options
+    .buttons
+      = submit_tag t('.submit'), :class => "save"

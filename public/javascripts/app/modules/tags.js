@@ -1,0 +1,4 @@
+var Tags = {
+  initialize: function() {
+  }
+};

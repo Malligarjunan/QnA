@@ -1,0 +1,49 @@
+# Messages for Italian (Italiano)
+# Exported from translatewiki.net
+# Export driver: syck-pecl
+# Author: Giallu
+# Author: Rippitippi
+it: 
+  feeds: 
+    feed: Feed
+    post_new_questions: Manda le nuove domande su
+    question: Iscriviti a questa domanda
+    questions: Iscriviti a tutte le domande
+    share_on_twitter: twitter, facebook e molti altri...
+    tag: Iscriviti al tag
+    user: Iscriviti alle domande dell'utente
+  global: 
+    active: Attiva
+    anonymous: Anonimo
+    by: da
+    current: Attuale
+    from: da %{site}
+    group_not_found: La pagina %{url} non esiste
+    or: o
+    permission_denied: Permesso negato
+    please_login: Accedi
+    preview: Anteprima
+    previous: Precedenti
+    share: Condividi
+  models: 
+    question: La domanda
+  scaffold: 
+    add: Aggiungi
+    back: Indietro
+    cancel: Annulla
+    close: Chiudi
+    create: Crea
+    destroy: Cancella
+    details: Dettagli
+    edit: Modifica
+    more: Altro...
+    new: Aggiungi nuovo %{model}
+    post_as_anonymous: Posta come anonimo
+    save: Salva
+    send: Invia
+    show: Mostra
+    sure: Cancellare questo %{model} ?
+    update: Aggiorna
+  time: 
+    ago: "%{time} fa"
+    today: oggi

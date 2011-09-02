@@ -1,0 +1,42 @@
+%h1
+  = @theme.name
+%p.description
+  = @theme.description
+  - if @theme.group == current_group
+    = link_to t("scaffold.edit"), edit_theme_path(@theme)
+    = link_to t('scaffold.destroy'),  theme_path(@theme), :method => :delete, :confirm => t("scaffold.sure", :model => Theme.model_name.human)
+  -if @theme.ready
+    = link_to t("themes.show.try"), domain_url(custom: current_group.domain, theme: @theme.id, controller: "questions", action: "index"), :target => "_blank"
+    = link_to t("themes.show.apply"), apply_theme_path(@theme), :method => :put
+
+-if !@theme.ready
+  = I18n.t('themes.show.not_ready')
+
+= I18n.t('themes.show.bg_color')
+
+%div.display-color{:style => "background: ##{@theme.bg_color}"}
+
+= I18n.t('themes.show.fg_color')
+%div.display-color{:style => "background: ##{@theme.fg_color}"}
+
+-if !@theme.new? && @theme.has_bg_image?
+  = I18n.t('themes.show.bg_image')
+  = image_tag("/_files/themes/bg_image/#{@theme.group_id}/#{@theme.id}")
+
+= I18n.t('themes.show.view_bg')
+%div.display-color{:style => "background: ##{@theme.view_bg_color}"}
+
+= I18n.t('themes.show.view_fg')
+%div.display-color{:style => "background: ##{@theme.view_fg_color}"}
+
+= I18n.t('themes.show.button_bg')
+%div.display-color{:style => "background: ##{@theme.button_bg_color}"}
+
+= I18n.t('themes.show.button_fg')
+%div.display-color{:style => "background: ##{@theme.button_fg_color}"}
+
+= I18n.t('themes.show.link_bg')
+%div.display-color{:style => "background: ##{@theme.link_fg_color}"}
+
+= I18n.t('themes.show.link_fg')
+%div.display-color{:style => "background: ##{@theme.link_bg_color}"}

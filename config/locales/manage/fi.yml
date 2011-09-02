@@ -1,0 +1,81 @@
+# Messages for Finnish (Suomi)
+# Exported from translatewiki.net
+# Export driver: syck-pecl
+# Author: Centerlink
+# Author: Raspi
+fi: 
+  admin: 
+    manage: 
+      appearance: 
+        logo_legend: Lataa logo ryhmällesi. Kuvan on oltava pienempi kuin 2 Mt.
+        title: Poimi ja mukauta teemaa
+      content: 
+        footer: Alatunniste
+        head: Otsake
+        question_help: Kysymysopaste
+        question_prompt: Kysymyksen kehote
+        title: Mukautettu sisältö
+        top_bar: Ylin palkki
+        top_bar_tip: Kirjoita yksi linkki per rivi
+      invitations: 
+        invitations: Lähetetyt kutsut
+        invitations_title: Lista lähettämästäsi kutsuista
+        invite: Kutsu ihmisiä
+        invite_title: Kutsu sähköpostitse
+        title: Kutsut
+      properties: 
+        ask_from_twitter: 
+          question_asked_to: Kysymys kysytty kohteeseen
+          question_must_include_example: "esim. # iAsk"
+        constrains: 
+          reputation_constrains_description: Tämä lomake sallii sinun asettaa, kuinka monta mainepistettä käyttäjien tarvitsee tehdä tíetylle toimelle
+          reputation_constrains_subtitle: Jokaisen toimen mainepisteiden luettelo
+          title: Vaatimukset
+        domain: 
+          description: "Voit määrittää sivustosi siten, että sitä voi käyttää mukautetun toimialueen kautta. Se tehdään näin:"
+          instruction1: Tehdäksesi näin sinun on ensin kirjauduttava toimialuepalveluntarjoajaasi. Se on sivusto, josta ostit toimialueesi kuten %{subdomain}.com.
+          instruction2: Siellä sinun on mentävä DNS-kohtaan ja luotava jotain jota kutsutaan nimellä CNAME.
+          instruction3: Valitse "www" tai jotain muuta kuin oma CNAME-nimesi.
+          instruction4: "Laita sitten host- tai destination-kenttään nykyinen Shapado-toimialueesi: %{domain}."
+          instruction5: Kun tämä on tehty, niin noin tunnin kuluttua toimialueesi www.%{subdomain} pitäisi osoittaa kohteeseen %{appdomain}.
+          instruction6: Kun näin on tapahtunut, palaa tänne ja laita toimialuenimesi www.%{subdomain} alla olevaan kenttään ja paina painiketta 'update'. Jos sinulla on kysymyksiä, kysy meiltä verkkojuttelussa %{chat_url} tai tukifoorumillamme.
+          title: Aseta toimialueesi
+          warning: Oletko varma, että haluat muuttaa toimialueesi?
+        facebook_app: 
+          application_id: Sovellustunniste
+          secret_key: Salainen avain
+        general: 
+          title: Ryhmän ominaisuudet
+        invitations: 
+          resend_button: Lähetä uudelleen
+          revoke_button: Peruuta
+        invite: 
+          body_length_warning: Sisältö voi sisältää enintään 400 merkkiä
+          invitations: Lähetetyt kutsut
+          invite: Kutsu ihmisiä
+          title: Kutsu sähköpostitse
+          user_role: Kutsu käyttäjiä
+        post_to_twitter: 
+          send_answers_to_twitter: Lähetä kaikki vastaukset Twitteriin
+          send_comments_to_twitter: Lähetä kaikki kommentit Twitteriin
+          send_favorites_to_twitter: Lähetä kaikki suosikkivastaukset Twitteriin
+          send_questions_to_twitter: Lähetä kaikki kysymykset Twitteriin
+        rewards: 
+          reputation_rewards_description: Tämän lomakkeen avulla voit määrittää, miten käyttäjät voivat voittaa ja menettää mainepisteitä tietystä toimesta
+          reputation_rewards_subtitle: Mainepalkintojen luettelo
+          title: Palkkiot
+        share: 
+          title: Jaa
+        tag_your_tweets: 
+          ends_with_example: "esim. # shapado"
+          starts_with_example: "esim. # qa"
+        title: Ryhmän ominaisuudet
+        twitter_account: 
+          twitter_account: Twitter-tili
+        twitter_app: 
+          key: Sovellustunniste
+      social: 
+        post_to_twitter: Lähetä Twitteriin
+      top_admin: 
+        site: Sivusto
+        title: Ylläpitäjä

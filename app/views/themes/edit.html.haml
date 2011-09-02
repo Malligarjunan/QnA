@@ -1,0 +1,6 @@
+%h1
+  = t("themes.edit.title")
+%p.description
+
+= form_for @theme, :html => {:multipart => true} do |form|
+  = render "form", :form => form

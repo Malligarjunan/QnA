@@ -1,0 +1,24 @@
+en:
+  themes:
+    show:
+      not_ready: This theme is not ready to be used, check back soon.
+      bg_color: Background color
+      fg_color: Foreground color
+      bg_image: Background image
+      view_bg: View's background color
+      view_fg: View's foreground color
+      button_bg: Buttons background color
+      button_fg: Buttons foreground color
+      link_bg: Links background color
+      link_fg: Links foreground color
+      use_link_bg: Use a background for links
+      apply: Apply
+      try: Try
+      fluid: Fluid (this will make the layout elastic as the browser window gets resized)
+    form:
+      update: Update theme
+    index:
+      description: "Find here your themes and change the look of your app."
+      new_theme: "You can build your own theme here."
+    edit:
+      title: Edit theme
