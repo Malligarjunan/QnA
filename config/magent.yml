@@ -1,13 +1,14 @@
 development:
-  database: shapado-magent-development
-  host: localhost
-  port: 27017
+  database: heroku_app935150
+  host: dbh43.mongolab.com
+  port: 27437
+  username: heroku_app935150
+  password: 898aqg2mtdlas7ihq55dfki2u7
   websocket_channel: magent.websocket
 
 test:
-  database: shapado-test
+  database: heroku_app935150
 
 production:
-  database: shapado-magent-production
+  database: heroku_app935150
   websocket_channel: magent.websocket
-

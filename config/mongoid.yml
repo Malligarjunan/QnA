@@ -10,15 +10,15 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  database: shapado-development
+  database: heroku_app935150
   uri: <%= ENV['MONGOLAB_URI'] %>
 
 test:
   <<: *defaults
-  database: shapado-test
+  database: heroku_app935150
   uri: <%= ENV['MONGOLAB_URI'] %>
 
 production:
   <<: *defaults
-  database: shapado-production
+  database: heroku_app935150
   uri: <%= ENV['MONGOLAB_URI'] %>
