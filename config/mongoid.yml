@@ -10,15 +10,15 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  database: heroku_app958924
+  database: heroku_app959179
   uri: <%= ENV['MONGOLAB_URI'] %>
 
 test:
   <<: *defaults
-  database: heroku_app958924
+  database: heroku_app959179
   uri: <%= ENV['MONGOLAB_URI'] %>
 
 production:
   <<: *defaults
-  database: heroku_app958924
+  database: heroku_app959179
   uri: <%= ENV['MONGOLAB_URI'] %>
