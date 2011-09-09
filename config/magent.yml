@@ -1,14 +1,14 @@
 development:
-  database: heroku_app935150
+  database: heroku_app958924
   host: dbh43.mongolab.com
   port: 27437
-  username: heroku_app935150
-  password: 898aqg2mtdlas7ihq55dfki2u7
+  username: heroku_app958924
+  password: v44327hondrsgq76msob5a3608
   websocket_channel: magent.websocket
 
 test:
-  database: heroku_app935150
+  database: heroku_app958924
 
 production:
-  database: heroku_app935150
+  database: heroku_app958924
   websocket_channel: magent.websocket
