@@ -11,4 +11,8 @@ test:
 
 production:
   database: heroku_app958924
+  host: dbh43.mongolab.com
+  port: 27437
+  username: heroku_app958924
+  password: v44327hondrsgq76msob5a3608
   websocket_channel: magent.websocket
