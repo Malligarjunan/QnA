@@ -16,5 +16,3 @@ production:
   username: heroku_app959179
   password: 922fadj52ffbprk3rteuct80a3
   websocket_channel: magent.websocket
-MONGOLAB_URI => mongodb://heroku_app959179:922fadj52ffbprk3rteuct80a3@dbh43.mong
-olab.com:27437/heroku_app959179
