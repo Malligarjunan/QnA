@@ -1,5 +1,5 @@
 base: &common
-  site: http://gmail.com
+  site: http://AskItAnswerIt.herokuapp.com
   analytics_id: UA-10385211-1
   analytics_vendor: googlean
   session_key: _shapado_session
@@ -54,10 +54,10 @@ base: &common
 
 development:
   <<: *common
-  domain: localhost.lan
+  domain: AskItAnswerIt.herokuapp.com
 production:
   <<: *common
-  domain: gmail.com
+  domain: AskItAnswerIt.herokuapp.com
   googlean_domain: .gmail.com
 test:
   <<: *common
