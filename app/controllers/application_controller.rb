@@ -57,7 +57,7 @@ class ApplicationController < ActionController::Base
       _current_group = Group.first(:state => "active")
       unless _current_group
         if subdomain = subdomains.first
-          _current_group = Group.where(:state => "active", :subdomain => subdomain).first
+          _current_group = Group.first(:state => "active", :subdomain => subdomain)
           unless _current_group.nil?
             redirect_to domain_url(:custom => _current_group.domain)
             return
